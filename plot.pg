@@ -1,0 +1,25 @@
+#!/usr/bin/gnuplot
+reset
+set terminal pngcairo size 1920,1080 enhanced 
+#linewidth 10# background 000
+#set term qt 1 size 1920,1080 persist
+
+set xdata time
+set timefmt "%d/%m/%Y %H:%M:%S"
+set format x "%H:%M:%S" 
+set xlabel "Time"
+
+set logscale y
+set ylabel "Size"
+
+set title "Network packets in kB size"
+set key reverse Left outside
+set grid
+
+set style data lines
+set pointintervalbox 5
+set autoscale
+
+plot "/tmp/data.dat" u 1:3 t "Download" lw 1, "" u 1:4 t "Upload" lw 1
+pause
+reread
